@@ -11,9 +11,12 @@ class UsersController {
             .collection(users_collection)
             .where('email', '==', email)
             .get();
-            if (snapshot.empty) return res.status(404).json({ message: 'No user found' });
+
+            if (snapshot.empty) 
+                return res.status(404).json({ message: 'No user found' });
+
             const data = snapshot.docs.map(doc => ({ ...doc.data() }));
-            return res.json(data);
+            return res.json(data[0]);
         } catch (error: any) {
             return res.status(500).json({ message: error.toString() });
         }
