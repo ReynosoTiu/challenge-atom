@@ -2,13 +2,12 @@ import express, { Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 
-require('dotenv').config({ path: process.env.ENV_FILE || '.env.dev' });
 
 
 const app = express();
 
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', 3000);
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json({ limit: '215mb' }));
