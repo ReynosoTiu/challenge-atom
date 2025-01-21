@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-
+import indexRoutes from './routes/index.routes';
 
 
 const app = express();
@@ -23,6 +23,8 @@ app.use(function (req, res, next) {
 app.get('/', async (req: Request, res: Response) => {
     res.json({ message: 'Hello World' });
 });
+
+app.use('', indexRoutes);
 
 
 export default app;
