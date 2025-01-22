@@ -1,14 +1,22 @@
 import { Component, HostListener } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { TaskComponent } from '../../components/task/task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [],
+  imports: [TaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.scss'
 })
 export class TasksComponent {
+
+  newTask = {
+    title: '',
+    description: '',
+    createdAt: new Date(),
+    completed: false,
+  };
 
   constructor(private cookieService: CookieService) {
     this.resetCookie();
