@@ -29,8 +29,6 @@ export class AuthComponent {
   onSubmit() {
     this.usersService.getUser(this.email).subscribe({
       next: () => {
-        this.cookieService.set('email', this.email, 1 / 24); // Duración de 1 hora
-        this.toastr.success('Bienvenido');
         this.reDirect();
       },
       error: (err: HttpErrorResponse) => {
@@ -65,7 +63,8 @@ export class AuthComponent {
   }
 
   reDirect() {
-    console.log('Redirigiendo...');
-    //this.router.navigate(['/tasks']);
+    this.cookieService.set('email', this.email, 1 / 24); // Duración de 1 hora
+    this.toastr.success('Bienvenido');
+    this.router.navigate(['/tasks']);
   }
 }

@@ -14,7 +14,7 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const email = cookieService.get('email');
   const API_URL = environment.API_URL + '/users';
   if (!email) {
-    router.navigate(['/login']);
+    router.navigate(['/auth']);
     return of(false);;
   }
 
@@ -25,13 +25,13 @@ export const loginGuard: CanActivateFn = (route, state) => {
         return true;
       } else {
         cookieService.delete('email');
-        router.navigate(['/login']);
+        router.navigate(['/auth']);
         return false;
       }
     }),
     catchError(() => {
       cookieService.delete('email');
-      router.navigate(['/login']);
+      router.navigate(['/auth']);
       return of(false);;
     })
   );
