@@ -1,5 +1,5 @@
 export interface GET_USER_RESPONSE {
-    email: string
+    token: string
 }
 
 export interface ADD_USER_RESPONSE {

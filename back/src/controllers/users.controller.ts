@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import db from "../config/firebase";
+import { generateToken } from "../utils/jwt.utils";
+import { USER_PAYLOAD } from "../interfaces/users.interface";
+require('dotenv').config();
 
 const users_collection = 'users';
 
@@ -8,15 +11,15 @@ class UsersController {
         try {
             const { email } = req.params;
             const snapshot = await db
-            .collection(users_collection)
-            .where('email', '==', email)
-            .get();
+                .collection(users_collection)
+                .where('email', '==', email)
+                .get();
 
-            if (snapshot.empty) 
+            if (snapshot.empty)
                 return res.status(404).json({ message: 'Usuario no encontrado' });
-
             const data = snapshot.docs.map(doc => ({ ...doc.data() }));
-            return res.json(data[0]);
+            const token = generateToken(data[0] as USER_PAYLOAD);
+            return res.json(token);
         } catch (error: any) {
             return res.status(500).json({ message: error.toString() });
         }

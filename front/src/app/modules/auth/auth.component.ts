@@ -27,9 +27,13 @@ export class AuthComponent {
   }
 
   onSubmit() {
+    this.searchUser();
+  }
+
+  searchUser() {
     this.usersService.getUser(this.email).subscribe({
-      next: () => {
-        this.reDirect();
+      next: (response) => {
+        this.reDirect(response.token);
       },
       error: (err: HttpErrorResponse) => {
         Swal.fire({
@@ -50,11 +54,12 @@ export class AuthComponent {
     });
   }
 
+
   addUser() {
     this.usersService.addUser(this.email).subscribe({
       next: (response) => {
         this.toastr.success(response.message);
-        this.reDirect();
+        this.searchUser();
       },
       error: (err: HttpErrorResponse) => {
         this.toastr.error(err.error.message);
@@ -62,8 +67,8 @@ export class AuthComponent {
     });
   }
 
-  reDirect() {
-    this.cookieService.set('email', this.email, 1 / 24); // Duración de 1 hora
+  reDirect(token: string) {
+    this.cookieService.set('token', token, 1 / 24); // Duración de 1 hora
     this.toastr.success('Bienvenido');
     this.router.navigate(['/tasks']);
   }
