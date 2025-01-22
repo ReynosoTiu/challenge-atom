@@ -13,7 +13,7 @@ class UsersController {
             .get();
 
             if (snapshot.empty) 
-                return res.status(404).json({ message: 'No user found' });
+                return res.status(404).json({ message: 'Usuario no encontrado' });
 
             const data = snapshot.docs.map(doc => ({ ...doc.data() }));
             return res.json(data[0]);
@@ -35,10 +35,10 @@ class UsersController {
                 .get();
 
             if (!userQuerySnapshot.empty)
-                return res.status(400).json({ message: 'The user already exists' });
+                return res.status(400).json({ message: 'El usuario ya existe' });
 
             await db.collection(users_collection).add(newUser);
-            return res.json({ message: 'User added successfully' });
+            return res.json({ message: 'Usuario creado exitosamente' });
         } catch (error: any) {
             return res.status(500).json({ message: error.toString() });
         }

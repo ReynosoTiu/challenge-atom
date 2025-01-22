@@ -46,7 +46,7 @@ describe('User Controller Tests', () => {
         const res = await request(app).get('/users/user0000@example.com');
 
         expect(res.status).toBe(404);
-        expect(res.body.message).toBe('No user found');
+        expect(res.body.message).toBe('Usuario no encontrado');
     });
 });
 
@@ -74,7 +74,7 @@ describe('User Controller Tests', () => {
             .send({ email: 'usernuevo@example.com' });
 
         expect(res.status).toBe(200);
-        expect(res.body.message).toBe('User added successfully');
+        expect(res.body.message).toBe('Usuario creado exitosamente');
         expect(mockCollection).toHaveBeenCalledWith('users');
     });
 
@@ -93,6 +93,6 @@ describe('User Controller Tests', () => {
             .send({ email: 'user@example.com' });
 
         expect(res.status).toBe(400);
-        expect(res.body.message).toBe('The user already exists');
+        expect(res.body.message).toBe('El usuario ya existe');
     });
 });

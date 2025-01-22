@@ -1,0 +1,34 @@
+<div class="container vh-100 vw-100 d-flex justify-content-center">
+    <div class="row justify-content-center w-100 h-75 align-items-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">Iniciar Sesión</h3>
+                    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo electrónico</label>
+                            <input type="email" id="email" name="email" [(ngModel)]="email" required
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #emailField="ngModel"
+                                class="form-control" placeholder="Ingresa tu correo electrónico" />
+                            @if(emailField.invalid && emailField.touched){
+                            <div class="text-danger mt-1">
+                                @if(emailField.errors?.['required']){
+                                <small>El correo es obligatorio.</small>
+                                }
+                                @if(emailField.errors?.['pattern']){
+                                <small>Ingresa un correo válido.</small>
+                                }
+                            </div>
+                            }
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100" [disabled]="!loginForm.valid">
+                            Ingresar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

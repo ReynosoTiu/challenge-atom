@@ -14,7 +14,7 @@ app.use(express.json({ limit: '215mb' }));
 app.use(express.urlencoded({ limit: '215mb', extended: true }));
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT,OPTIONS");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
     res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,contentType,Content-Type,Accept,Authorization");
     next();
 });
