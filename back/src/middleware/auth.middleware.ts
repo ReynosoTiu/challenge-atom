@@ -13,8 +13,9 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): v
         if(decoded){
             req.user = decoded;
             next();
+        }else{
+            res.status(401).json({ status: false, data: "Token inválido o expirado." });
         }
-        res.status(401).json({ status: false, data: "Token inválido o expirado." });
     } catch (error) {
         res.status(401).json({ status: false, data: "Token inválido o expirado." });
     }

@@ -68,8 +68,7 @@ export class AuthComponent {
   }
 
   reDirect(token: string) {
-    this.cookieService.set('token', token, 1 / 24); // Duración de 1 hora
-    this.toastr.success('Bienvenido');
+    this.cookieService.set('token', token);
     this.router.navigate(['/tasks']);
   }
 }

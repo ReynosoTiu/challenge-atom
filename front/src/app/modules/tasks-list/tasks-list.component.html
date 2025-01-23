@@ -1,0 +1,35 @@
+<div class="container mt-4">
+
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xsm-6 mb-2 ">
+      <button class="btn btn-primary w-100" (click)="openModal()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+        </svg>
+        Agregar tarea</button>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xsm-6">
+      <button class="btn btn-danger w-100" (click)="logout()"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+          height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+          <path fill-rule="evenodd"
+            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+        </svg>
+        Salir
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    @if(tasks.length === 0 && !loading){
+    <div class="alert alert-info">No hay tareas</div>
+    }
+    @for( task of tasks; track task.id ){
+    <app-task [task]="task" (editTask)="onEditTask($event)" (deleteTask)="onDeleteTask($event)"></app-task>
+    }
+  </div>
+</div>
+<app-task-new-modal (saveTask)="loadTasks()"></app-task-new-modal>

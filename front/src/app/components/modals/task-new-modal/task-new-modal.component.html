@@ -1,0 +1,28 @@
+<div id="taskNewModal" class="modal" tabindex="-1" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Agregar nueva tarea</h5>
+                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Titulo</label>
+                        <input type="text" id="title" class="form-control" [(ngModel)]="newTask.title" name="title"
+                            required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descripción</label>
+                        <textarea id="description" class="form-control" [(ngModel)]="newTask.description"
+                            name="description" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar</button>
+                <button type="button" class="btn btn-success" (click)="onSave()">Guardar tarea</button>
+            </div>
+        </div>
+    </div>
+</div>

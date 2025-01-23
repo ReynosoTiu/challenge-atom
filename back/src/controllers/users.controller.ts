@@ -19,7 +19,7 @@ class UsersController {
                 return res.status(404).json({ message: 'Usuario no encontrado' });
             const data = snapshot.docs.map(doc => ({ ...doc.data() }));
             const token = generateToken(data[0] as USER_PAYLOAD);
-            return res.json(token);
+            return res.json({token});
         } catch (error: any) {
             return res.status(500).json({ message: error.toString() });
         }

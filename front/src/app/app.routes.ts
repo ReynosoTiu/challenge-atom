@@ -15,7 +15,7 @@ export const routes: Routes = [
     },
     {
         path: "tasks",
-        loadComponent: () => import("./modules/tasks/tasks.component").then((m) => m.TasksComponent),
+        loadComponent: () => import("./modules/tasks-list/tasks-list.component").then((m) => m.TasksListComponent),
         canActivate: [loginGuard]
     }
 ];

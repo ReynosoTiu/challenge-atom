@@ -7,8 +7,7 @@ jest.mock('firebase-admin');
 const mockFirestore = admin.firestore();
 const mockCollection = mockFirestore.collection as jest.Mock;
 
-//Pruebas para el enpoint GET
-describe('User Controller Tests', () => {
+describe('Pruebas para el enpoint GET', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
@@ -29,8 +28,9 @@ describe('User Controller Tests', () => {
         const res = await request(app).get('/users/user@example.com');
 
         expect(res.status).toBe(200);
-        expect(res.body).toEqual(mockUser);
-        expect(mockCollection).toHaveBeenCalledWith('users');
+        expect(res.body.token).toBeDefined();
+        expect(typeof res.body.token).toBe('string');
+        expect(res.body.token).toMatch(/.+/);
     });
 
     it('Debería retornar 404 si el usuario no existe y un mensaje', async () => {
@@ -51,9 +51,7 @@ describe('User Controller Tests', () => {
 });
 
 
-
-// Pruebas para el endpoint POST
-describe('User Controller Tests', () => {
+describe('Pruebas para el endpoint POST', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });

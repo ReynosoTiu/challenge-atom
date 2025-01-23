@@ -1,31 +1,28 @@
 <div class="card mb-3 shadow-sm">
-    <div class="card-body">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <h5 class="card-title {{ task.completed ? 'text-decoration-line-through text-muted' : '' }}">
-          {{ task.title }}
-        </h5>
-        <small class="text-muted">{{ task.createdAt }}</small>
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h5 class="card-title {{ task.completed ? 'text-decoration-line-through text-muted' : '' }}">
+        {{ task.title }}
+      </h5>
+      <small class="text-muted">{{ task.createdAt }}</small>
+    </div>
+    <p class="card-text">{{ task.description }}</p>
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <input type="checkbox" id="task-{{ task.id }}" [(ngModel)]="task.completed" (change)="updateTask(task)"
+          class="form-check-input me-2" />
+        <label for="task-{{ task.id }}" class="form-check-label">
+          {{ task.completed ? 'Completada' : 'Pendiente' }}
+        </label>
       </div>
-      <p class="card-text">{{ task.description }}</p>
-  
-      <div class="d-flex justify-content-between">
-        <div>
-          <input
-            type="checkbox"
-            id="task-{{ task.id }}"
-            [checked]="task.completed"
-            (change)="onMarkComplete()"
-            class="form-check-input me-2"
-          />
-          <label for="task-{{ task.id }}" class="form-check-label">
-            {{ task.completed ? 'Completed' : 'Pending' }}
-          </label>
-        </div>
-        <div>
-          <button class="btn btn-primary btn-sm me-2" (click)="onEdit()">Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="onDelete()">Delete</button>
-        </div>
+      <div>
+        <button class="btn btn-primary btn-sm me-2" (click)="openModal()">Edit</button>
+        <button class="btn btn-danger btn-sm" (click)="onDelete()">Delete</button>
       </div>
     </div>
   </div>
-  
+</div>
+
+
+<app-task-edit-modal [task]="copyTask" (saveTask)="updateTask($event)" ></app-task-edit-modal>
