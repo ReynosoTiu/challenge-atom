@@ -9,6 +9,31 @@
   },
   "overrides": [
     {
+      "files": ["**/*.cy.ts"],
+      "env": {
+        "cypress/globals": true
+      },
+      "plugins": ["cypress"],
+      "extends": [
+        "plugin:cypress/recommended"
+      ],
+      "rules": {
+        // Cypress specific rules
+      }
+    },
+    {
+      "files": ["**/*.spec.ts"],
+      "env": {
+        "jasmine": true
+      },
+      "extends": [
+        "plugin:jasmine/recommended"
+      ],
+      "rules": {
+        // Jasmine specific rules
+      }
+    },
+    {
       "files": [
         "*.ts"
       ],

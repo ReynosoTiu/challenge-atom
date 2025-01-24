@@ -39,8 +39,8 @@ class TaskController {
             const data = taskSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as TASK[];
 
             data.sort((a, b) => {
-                const dateA = new Date(a.createdAt.split('/').reverse().join('-'));
-                const dateB = new Date(b.createdAt.split('/').reverse().join('-'));
+                const dateA = new Date(a.createdAt.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1'));
+                const dateB = new Date(b.createdAt.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$3-$2-$1'));
                 return dateB.getTime() - dateA.getTime();
             });
 
