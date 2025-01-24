@@ -24,7 +24,7 @@
   </div>
 
   <div class="mt-4">
-    @if(tasks.length === 0 && !loading){
+    @if(tasks.length === 0 && loading){
     <div class="alert alert-info">No hay tareas</div>
     }
     @for( task of tasks; track task.id ){

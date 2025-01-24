@@ -1,6 +1,5 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { of } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 export const hasloggedGuard: CanActivateFn = (route, state) => {
@@ -8,8 +7,8 @@ export const hasloggedGuard: CanActivateFn = (route, state) => {
   const cookieService = inject(CookieService);
   const token = cookieService.get('token');
   if (!token) {
-    return of(true);
+    return true;
   }
   router.navigate(['/tasks']);
-  return of(false);
+  return false;
 };

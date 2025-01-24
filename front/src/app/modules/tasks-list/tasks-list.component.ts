@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class TasksListComponent {
   tasks: TASK[] = [];
-  loading = true;
+  loading = false;
 
   constructor(private tasksService: TasksService,
     private cookieService: CookieService,
@@ -38,9 +38,10 @@ export class TasksListComponent {
     this.tasksService.getTasks().subscribe({
       next: (response) => {
         this.tasks = response.data;
-        this.loading = false;
+        this.loading = true;
       }, error: (error: HttpErrorResponse) => {
         console.error(error);
+        this.loading = true;
       }
     });
   }
