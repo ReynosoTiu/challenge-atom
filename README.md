@@ -61,6 +61,8 @@ En la parte superior existen dos botones. Uno para crear nuevas tareas y el otro
 ### Consideraciones
 * Se decidió utilizar un modal para mostrar el formulario de creación de tareas y la edición de la misma. Esto se hizo con el fin de mantener una vista mas limpia y una ofrecer mejor experiencia hacia el usuario.
 
+![modal](./img/modal.png)
+
 * Se utilizó una clave privada de la cuenta de servicio de firebase para conectarse a la base de datos de firestore para garantizar la conexión utilizando firebase-admin
 * Se utiliza environments para guardar las configuraciones de desarrollo y productivas
 
